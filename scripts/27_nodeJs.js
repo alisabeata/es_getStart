@@ -20,5 +20,61 @@
 
 
 // - HTTPS
-const http = require('http');
-console.log(http);
+//const http = require('http');
+//console.log(http);
+
+
+
+// NodeJs сервер
+
+
+const http = require('http');      // импорт http модуля
+const fs = require('fs');          // взаимодействует с файловой системой
+const Events = require('events');  // 
+const eventEmmiter = new Events();
+
+/*
+http.createServer(function (request, response) {
+  response.end('hello');
+}).listen(3000);
+*/
+
+eventEmmiter.on('fileReaded', () => {
+  console.log('EVENTEMMITER : "FILE READED"');
+});
+
+eventEmmiter.on('sendPage', (url, response) => {
+  let fileName;
+  
+  switch (url) {
+    case ('/'):
+      fileName = 'node-test_index.html';
+      break;
+      
+    case ('/contacts'):
+      fileName = 'node-test_contacts.html';
+      break;
+      
+    default:
+      fileName = 'node-test_index.html';
+      break;
+  }
+  
+  fs.readFile(fileName, function (err, data) {
+    eventEmmiter.emit('fileReaded');
+    if (err) throw new Error('error');
+    response.end(data);
+  });
+});
+
+
+http.createServer(function (request, response) {
+  // emit аналог dispatchEvent
+  // здесь создаётся пользовательское событие 'sendPage'
+  let fileName = eventEmmiter.emit('sendPage', request.url, response);
+}).listen(3000);
+
+
+// демон для node https://nodemon.io/ автоматически обновляет сервер при обновлении
+
+// часто в разработке используется фреймворк Koa https://koajs.com/

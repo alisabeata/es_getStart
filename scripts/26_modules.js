@@ -37,3 +37,26 @@ define(['./script-numbers.js'], function (numbers) {
 import myModule from './script-numbers.js';
 
 console.log(myModule);
+
+
+
+
+/* in script-numbers.js */
+
+const numbers = [1, 2, 3, 4, 5];
+
+
+// CommonJS
+module.exports = numbers;
+
+
+// AMD
+define([], function () {
+  return numbers;
+});
+
+
+// ES6 modules
+export default numbers;
+//export {numbers};
+//export {numbers as myModule};
