@@ -1,23 +1,19 @@
 // каррирование
 
-// каррирование применяется, когда много логически много функций, чтобы их не дублиирвать
+// частный случай замыкания
+// каррирование применяется, когда много логически похожих функций, чтобы их не дублировать
 
-function filter(arr, someFn) {
-  let result = [];
-  
-  for (let i = 0; i < arr.length; i++) {
-    if (someFn(arr[i]) === true) {
-      result.push(arr[i]);
-    }
-  }
-  
-  return result;
-}
 
+const sum = (x, y) => x + y; // обычная запись
+sum(x, y);
+
+const sumCurry = x => y => x + y; // каррирование
+sumCurry(x)(y);
+
+
+
+// пример использования
 const arr = [1, 5, 7, 7, 11, 13, 53, 72, 10];
-
-
-
 // carry here
 function greater(than) {
   return function(number) {
@@ -25,12 +21,5 @@ function greater(than) {
   }
 }
 
-
-
-//const result = filter(arr, function (number) {
-//  return number > 5;
-//});
-
 const result = filter(arr, greater(5));
-
-console.log(result);
+// не дублирую функцию можно менять параметр, настраивая фильтр
