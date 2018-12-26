@@ -5,25 +5,28 @@
 const loadBtn_1 = document.querySelector('#btn-loading');
 const loadContent_1 = document.querySelector('.content');
 
-//function loadFile_1(url) {
-//  
-//  return new Promise((resolve, reject) => {
-//    
-//    const xhr = new XMLHttpRequest();
-//
-//    xhr.open('GET', url);
-//    xhr.send();
-//
-//    xhr.addEventListener('load', () => {
-//      if (xhr.status === 404) {
-//        reject();
-//      } else {
-//        resolve(xhr.response);
-//      }
-//    });
-//  });
-//  
-//}
+/* (without fetch)
+function loadFile_1(url) {
+  
+  return new Promise((resolve, reject) => {
+    
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url);
+    xhr.send();
+
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 404) {
+        reject();
+      } else {
+        resolve(xhr.response);
+      }
+    });
+  });
+  
+}
+*/
+
 
 // аналог функции выше с fetch
 function loadFile_1(url) {
@@ -34,6 +37,7 @@ function loadFile_1(url) {
   });
   
 }
+
 
 loadBtn_1.addEventListener('click', () => {
   loadFile_1('file1.txt')
@@ -52,7 +56,8 @@ loadBtn_1.addEventListener('click', () => {
 });
 
 
-// fetch получение
+
+// - получение
 
 fetch('file1.txt')
   .then(response => {
@@ -63,13 +68,13 @@ fetch('file1.txt')
   });
 
 // короткая версия
-//fetch('file1.txt')
-//  .then(response => response.text())
-//  .then(text => console.log(text));
+fetch('file1.txt')
+  .then(response => response.text())
+  .then(text => console.log(text));
 
 
-// fetch reject
 
+// - reject
 fetch('file32.txt')
   .then(response => {
     if (response.status === 404) {
@@ -83,16 +88,14 @@ fetch('file32.txt')
   .catch(() => console.log('файл не найден'));
 
 
-// fetch отправка
+// - отправка
+fetch('some.php', {
+  metod: 'POST',
+  body: data
+});
 
-//  fetch('some.php', {
-//    metod: 'POST',
-//    body: data
-//  });
 
-
-// fetch json
-
+// - json
 fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
   .then(response => response.json())
   .then(cities => console.log(cities))

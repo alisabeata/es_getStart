@@ -47,7 +47,6 @@ describe('Calc', function () { // describe группа тестов
 
 // chai assert
 // http://www.chaijs.com/api/assert/
-
 // более расширенная библиотека
 
 // const assert = require('chai'); 
