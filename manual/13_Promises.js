@@ -97,17 +97,17 @@ Promise.all([
 // - reject
 // функция-обработчик reject через .then вызывается вторым параметром
 promise.then(function {
-  console.log('promise_2 resolved');
+  console.log('resolved');
 }, function {
-  console.log('promise_2 rejected');
+  console.log('rejected');
 });
 
 
 // - catch
 promise
-  .then(() => console.log('promise_3 resolved'))
-  .then(() => console.log('promise_3 resolved'))
-  .then(() => console.log('promise_3 resolved'))
+  .then(() => console.log('resolved'))
+  .then(() => console.log('resolved'))
+  .then(() => console.log('resolved'))
   .catch(() => console.log('something wrong'));
 
 

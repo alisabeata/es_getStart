@@ -26,10 +26,16 @@ loadBtn.addEventListener('click', () => {
 });
 
 // если третьим параметром в xhr.open('GET', '...', false); передать false, 
-// то  xhr.send() будет блокирующим, те интерпритатор остановится до получения
+// то xhr.send() будет блокирующим, те интерпритатор остановится до получения
 // ответа, xhr.addEventListener('load') не нужен в таком случае (отмена 
 // асинхронности, so bad), по умолчанию true
 
+
+// св-во xhr.responseType указывает тип ответа
+xhr.responseType = 'json';
+
+
+// - with Promise
 function loadFile(url) {
   return new Promise(resolve => {
     const xhr = new XMLHttpRequest();
@@ -57,4 +63,12 @@ loadBtn.addEventListener('click', () => {
     .then((value) => {
       console.log(value);
     });
+});
+
+
+// - проверка ошибок
+xhr.addEventListener('load', () => {
+  if (xhr.status >= 400) {
+    throw new Error('произошла ошибка');
+  }
 });
