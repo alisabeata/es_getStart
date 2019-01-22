@@ -1,13 +1,11 @@
 // Promise, промисы
 
+
 // pending / waiting  ожидание
-// -- fullfilled / resolved выполнено успешно
-// -- rejected выполнено неудачно
+// fullfilled / resolved выполнено успешно
+// rejected / failed выполнено неудачно
 
 
-// как работает:
-
-/*
 promise = {
   state ...,
   then(),
@@ -19,14 +17,14 @@ promise = {
   ],
   rejectedQueue: [fnc..., fnc...]
 }
-*/
+
 
 
 const promise = new Promise(function (resolve, reject) {
-  // вызвать resolve(); или reject();
+  // вызвать resolve() или reject()
 
   setTimeout(function () {
-    //resolve();
+    resolve();
   }, 2000);
 });
 
@@ -38,10 +36,7 @@ promise.then(function (value) {
 });
 
 
-
-
-// подгрузка картинок c Promise
-
+// - подгрузка картинок c Promise
 const url_img_1 = 'http://s3.favim.com/mini/140529/blue-colours-galaxy-pink-Favim.com-1799653.jpg';
 const url_img_2 = 'https://media.wired.com/photos/59268c5dcfe0d93c474309a2/master/w_1400,c_limit/BSP_054.jpg';
 const url_img_3 = 'https://img.purch.com/w/640/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzA0NC83NjMvaTAyL2FyZWEtYXJvdW5kLWFuZHJvbWVkYS1nYWxheHkuanBnPzE0MjA2NTM0NTQ=';
@@ -54,10 +49,6 @@ function loadImg_2(url) {
     img.height = 200;
     img.src = url;
     document.body.appendChild(img);
-
-//    img.addEventListener('load', () => {
-//      resolve();
-//    });
     
     img.addEventListener('load', resolve);
     img.addEventListener('load', reject);
@@ -66,11 +57,10 @@ function loadImg_2(url) {
 
 
 // then возвращает новый Promise
-
 // если из предыдущего then возвращается промис пинудительно (есть return с промисом), то след функция then записывается к тому что в ретурне
 
 
-// чейнинг
+// - чейнинг
 loadImg_2(url_img_1)
   .then(() => {
     console.log('картинка 1 загружена');
@@ -93,14 +83,18 @@ loadImg_2(url_img_1)
   .then(() => console.log('все картинки загружены'));
 
 
-// Promise.all(promoses) принимает массив из промиссов, который разрешитья тогда, когда все промиссы из массива будут разрешены, либо зареджектится если один из промисов разрешится неудачно
+// - Promise.all(promoses) принимает массив из промиссов, который разрешиться // когда все промиссы из массива будут разрешены, либо зареджектится если 
+// один из промисов разрешится неудачно
+Promise.all([
+  new Promise()...,
+  new Promise()...,
+  new Promise()...,
+]);
 
 
 
 
-
-// promise reject
-
+// - reject
 const promise_2 = new Promise((resolve, reject) => {
   setTimeout(function () {
     reject();
@@ -138,14 +132,11 @@ promise_3
   });
 
 
-// catch выполняется только тогда, когда ни в одном из then нет обработчика reject
-
+// (!) catch выполняется только тогда, когда ни в одном из then нет обработчика reject
 
 
 function loadFile_2(url) {
-  
   return new Promise((resolve, reject) => {
-    
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', url);
@@ -153,11 +144,10 @@ function loadFile_2(url) {
 
     xhr.addEventListener('load', () => {
       if (xhr.status === 404) {
-        reject();   // <<<<<<<<
+        reject();
       } else {
         resolve(xhr.response);
       }
     });
-  });
-  
+  }); 
 }
