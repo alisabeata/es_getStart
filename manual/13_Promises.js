@@ -101,6 +101,7 @@ const promise_2 = new Promise((resolve, reject) => {
   }, 1000);
 });
 
+// функция-обработчик reject через .then вызывается вторым параметром
 promise_2.then(
   () => {
     console.log('promise_2 resolved');
