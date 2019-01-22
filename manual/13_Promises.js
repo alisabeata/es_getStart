@@ -37,12 +37,12 @@ promise.then(function (value) {
 
 
 // - подгрузка картинок c Promise
-const url_img_1 = 'http://s3.favim.com/mini/140529/blue-colours-galaxy-pink-Favim.com-1799653.jpg';
-const url_img_2 = 'https://media.wired.com/photos/59268c5dcfe0d93c474309a2/master/w_1400,c_limit/BSP_054.jpg';
-const url_img_3 = 'https://img.purch.com/w/640/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzA0NC83NjMvaTAyL2FyZWEtYXJvdW5kLWFuZHJvbWVkYS1nYWxheHkuanBnPzE0MjA2NTM0NTQ=';
+const img_1 = 'http://s3.favim.com/mini/140529/blue-colours-galaxy-pink-Favim.com-1799653.jpg';
+const img_2 = 'https://media.wired.com/photos/59268c5dcfe0d93c474309a2/master/w_1400,c_limit/BSP_054.jpg';
+const img_3 = 'https://img.purch.com/w/640/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzA0NC83NjMvaTAyL2FyZWEtYXJvdW5kLWFuZHJvbWVkYS1nYWxheHkuanBnPzE0MjA2NTM0NTQ=';
 
 
-function loadImg_2(url) {
+function loadImg(url) {
   return new Promise((resolve, reject) => {
     const img = document.createElement('img');
   
@@ -57,29 +57,29 @@ function loadImg_2(url) {
 
 
 // then возвращает новый Promise
-// если из предыдущего then возвращается промис пинудительно (есть return с промисом), то след функция then записывается к тому что в ретурне
+// если из предыдущего then возвращается промис пинудительно (есть return с промисом), то след функция then относится к тому что в ретурне
 
 
 // - чейнинг
-loadImg_2(url_img_1)
+loadImg(img_1)
   .then(() => {
     console.log('картинка 1 загружена');
   
-    return loadImg_2(url_img_2);
+    return loadImg(img_2);
   })
   .then(() => {
     console.log('картинка 2 загружена');
   
-    return loadImg_2(url_img_3);
+    return loadImg(img_3);
   })
   .then(() => {
     console.log('картинка 3 загружена');
   });
 
 
-loadImg_2(url_img_1)
-  .then(() => loadImg_2(url_img_2))
-  .then(() => loadImg_2(url_img_3))
+loadImg(img_1)
+  .then(() => loadImg(img_2))
+  .then(() => loadImg(img_3))
   .then(() => console.log('все картинки загружены'));
 
 
@@ -95,42 +95,20 @@ Promise.all([
 
 
 // - reject
-const promise_2 = new Promise((resolve, reject) => {
-  setTimeout(function () {
-    reject();
-  }, 1000);
-});
-
 // функция-обработчик reject через .then вызывается вторым параметром
-promise_2.then(
-  () => {
-    console.log('promise_2 resolved');
-  },
-  () => {
-    console.log('promise_2 rejected');
-  }
-);
-
-
-const promise_3 = new Promise((resolve, reject) => {
-  setTimeout(function () {
-    reject();
-  }, 3000);
+promise.then(function {
+  console.log('promise_2 resolved');
+}, function {
+  console.log('promise_2 rejected');
 });
 
-promise_3
-  .then(() => {
-    console.log('promise_3 resolved');
-  })
-  .then(() => {
-    console.log('promise_3 resolved');
-  })
-  .then(() => {
-    console.log('promise_3 resolved');
-  })
-  .catch(() => {
-    console.log('something wrong');
-  });
+
+// - catch
+promise
+  .then(() => console.log('promise_3 resolved'))
+  .then(() => console.log('promise_3 resolved'))
+  .then(() => console.log('promise_3 resolved'))
+  .catch(() => console.log('something wrong'));
 
 
 // (!) catch выполняется только тогда, когда ни в одном из then нет обработчика reject
