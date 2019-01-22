@@ -1,34 +1,37 @@
-// ajax
+// Работа с сетью
 
+// ajax
 const loadBtn = document.querySelector('#btn-loading');
 const loadContent = document.querySelector('.content');
 
 
-// xhr
+// - xhr
 loadBtn.addEventListener('click', () => {
-  const xhr = new XMLHttpRequest(); // новый реквест
+  // новый запрос
+  const xhr = new XMLHttpRequest();
   
-  xhr.open('GET', 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json');
-  xhr.send(); // отправить запрос
+  // настройка запроса
+  xhr.open('GET', 'https://someaddress.com/cities.json');
+  // отправить
+  xhr.send();
   
   xhr.addEventListener('load', () => {
-    console.log('ответ получен');
-    console.log(xhr.response);
-    
+    const content = JSON.parse(xhr.response);
     loadContent.textContent = xhr.response;
     
-    const content = JSON.parse(xhr.response);
-    
+    console.log('ответ получен');
+    console.log(xhr.response);
     console.log(content);
   });
 });
 
-// если третьим параметром в xhr.open('GET', '...', false); передать false, то  xhr.send() будет блокирующим, те интерпритатор остановится до получения ответа, xhr.addEventListener('load') не нужен в таком случае (отмена асинхронности, so bad), по умолчанию true
+// если третьим параметром в xhr.open('GET', '...', false); передать false, 
+// то  xhr.send() будет блокирующим, те интерпритатор остановится до получения
+// ответа, xhr.addEventListener('load') не нужен в таком случае (отмена 
+// асинхронности, so bad), по умолчанию true
 
 function loadFile(url) {
-  
   return new Promise(resolve => {
-    
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', url);
@@ -42,7 +45,7 @@ function loadFile(url) {
 }
 
 loadBtn.addEventListener('click', () => {
-  loadFile('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
+  loadFile('https://someaddress.com/cities.json')
     .then((value) => {
       const content = JSON.parse(value);
 

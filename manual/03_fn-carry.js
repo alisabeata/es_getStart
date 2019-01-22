@@ -23,3 +23,4 @@ function greater(than) {
 
 const result = filter(arr, greater(5));
 // не дублируя функцию можно менять параметр, настраивая фильтр
+

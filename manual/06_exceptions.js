@@ -1,12 +1,13 @@
-// Исключения
+// try/catch 
+// обработка исключений
 
-/*
+
 try {
   // потенциально "опасный" код (который может поломать алгоритм)
 } catch (e) {
   // обработка
 }
-*/
+
 
 const ERROR_DIV_ZERO = 'На ноль делить нельзя';
 const ERROR_SHOULD_B = 'Необходимо передать b';
@@ -32,7 +33,7 @@ const resultDivNums = divNums(14, 0);
 
 
 
-//#2 (более правильный вариант)
+// #2 (более правильный вариант)
 function divNums(a, b) {
   if (b === 0) {
     throw new Error('На ноль делить нельзя');
@@ -51,5 +52,3 @@ try {
 } catch (e) {
   console.error(e.message);
 }
-
-

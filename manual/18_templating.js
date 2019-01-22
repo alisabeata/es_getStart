@@ -2,10 +2,10 @@
 
 const name_3 = 'SomeName';
 const lastName_3 = 'SomeLastName';
-
 const fullName_3 = `[${name_3}] [${lastName_3}]`;
 
-console.log(fullName_3);
+console.log(fullName_3); // >> [SomeName] [SomeLastName]
+
 
 
 const listNames = [
@@ -26,4 +26,4 @@ function renderList(list) {
   return res;
 }
 
-console.log(renderList(listNames));
+console.log(renderList(listNames)); // >> Name1 lastName1 Name2 lastName2 Name3 lastName3 Name4 lastName4 Name5 lastName5 

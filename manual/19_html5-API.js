@@ -11,7 +11,7 @@
 // - WebWorkers
 
 
-// DataSet
+// - DataSet
 const dataElem = document.querySelector('.elem-with-data');
 
 console.log('_____DataSet');
@@ -34,7 +34,7 @@ document.addEventListener('keyup', function (event) {
 });
 
 
-// History states
+// - History states
 
 // для маршрутизации
 const saveBtn = document.querySelector('.save-btn');
@@ -80,7 +80,7 @@ applyStyles();
 
 
 
-// Local storage / Session storage
+// - Local storage / Session storage
 
 // в отличие от кук данные не отправляются на сервер, не имеют срока годности, можно хранить больший объём данных
 
@@ -121,7 +121,7 @@ window.addEventListener('storage', function () {
 
 
 
-// FileAPI
+// - FileAPI
 
 const fileReader = new FileReader();
 const inpLoader = document.querySelector('#file-loader');
@@ -266,7 +266,7 @@ messageSend.addEventListener('click', sendMessage);
 
 
 
-// Geolocation
+// - Geolocation
 const locationResult = document.querySelector('.location-result');
 const locationDetect = document.querySelector('#location-detect');
 const locationWatch = document.querySelector('#location-watch');

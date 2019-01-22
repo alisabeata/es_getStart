@@ -1,4 +1,4 @@
-// Promise, промисы
+// Promises
 
 
 // pending / waiting  ожидание

@@ -6,24 +6,14 @@
 // инкапсуляция — возможность скрывать более сложную реализацию за более простыми вещами
 // addEventListener пример инкапсуляции
 
-const clickBtn_1 = document.querySelector('#click-btn-1');
+const btn = document.querySelector('#btn');
 
-clickBtn_1.addEventListener('click', () => {
-  console.log(1);
-});
-
-clickBtn_1.addEventListener('click', () => {
-  console.log(2);
-});
-
-clickBtn_1.addEventListener('mousemove', () => {
-  console.log('!');
-});
+btn.addEventListener('click', () => console.log(1));
+btn.addEventListener('click', () => console.log(2));
+btn.addEventListener('mousemove', () => console.log('!'));
 
 
 // примерная схема обработки событий на основе addEventListener
-
-/*
 clickBtn_1 = {
   eventHandler: {
     click: [
@@ -48,7 +38,7 @@ clickBtn_1 = {
     }
   }
 };
-*/
+
 
 
 // паттерн модуль (инкапсуляция) — сокрытие данный, защита от изменений
@@ -89,7 +79,7 @@ console.log(counter_1.get());
 //  паттерн интерфейс
 //  множественное наследование (миксины)
 
-// более полно подход наследования реализван в typeScript (надстройка над js)
+// более полно подход наследования реализван в typeScript
 
 
 

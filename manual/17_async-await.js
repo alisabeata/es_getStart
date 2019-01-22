@@ -1,6 +1,9 @@
 // async/await
 
-// позволяет добавлять промисы в основной поток, убирает ассинхронность, но только внутри функции async, по отношению ко внешним функциям асинхронность не нарушается
+
+// позволяет добавлять промисы в основной поток, убирает ассинхронность, 
+// но только внутри функции async, по отношению ко внешним функциям 
+// асинхронность не нарушается
 
 function delay(ms) {
   return new Promise(resolve => {
@@ -62,7 +65,6 @@ loadBtn_2.addEventListener('click', async () => {
 
 
 // reject c async
-
 function loadFile_3(url) {
   return fetch(url).then(response => {
     if (response.status === 404) {

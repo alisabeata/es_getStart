@@ -1,10 +1,12 @@
-// Отладка
-
-// точки останова
-// debugger;  в нужном месте кода, затем в девтулз сорсез запуск оставшегося кода по шагам
+// Console
 
 
-// console
+// - debugger (точки останова)
+// отладка в дев тулз
+debugger;
+
+
+// - console
 console.log('text');
 console.log('text %s and %s', 'sometext', 'texxxt');
 
@@ -25,7 +27,7 @@ console.group('group');
 console.groupEnd();
 
 
-// замер производительности кода
+// - замер производительности кода
 console.time('timer 1');
 for (let i = 1; i < 200; i++) {
   var h = i / i;
@@ -33,7 +35,7 @@ for (let i = 1; i < 200; i++) {
 console.timeEnd('timer 1');
 
 
-// получение полной статистики по участку кода
+// - получение полной статистики по участку кода
 console.profile('profile 1');
 
 function f11() {
