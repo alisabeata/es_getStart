@@ -2,18 +2,18 @@
 
 
 // - declaration — объявление
-function fn2(a, b) {
+function fn(a, b) {
   return a + b;
 }
 
 // - expression — выражение
-const fn3 = function (a, b) {
+const fn = function (a, b) {
   return a + b;
 };
 
 
 // (!) стрелочная функция — всегда function expression
-
+const fn = (a, b) => a + b;
 
 
 // - Чистые функции

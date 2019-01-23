@@ -81,3 +81,23 @@ class someClass extends otherClass {
     //...
   }
 }
+
+
+// - стрелочные методы
+class A {
+  fun() {
+    console.log(this);
+  }
+  
+  arrowFun = () => {
+    console.log(this);
+  }
+}
+
+const a = new A();
+
+a.fun(); // экземпляр класса А
+a.arrowFun(); // экземпляр класса А
+
+a.fun().call(null); // null
+a.arrowFun().call(null); // экземпляр класса А
