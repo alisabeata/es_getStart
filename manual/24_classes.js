@@ -1,7 +1,7 @@
 // классы (es6)
 
-// св-ва добавляются в constructor() {...}
 
+// св-ва добавляются в constructor() {...}
 class Human1 {
   constructor(name, lastName) {
     this.name = name;
@@ -14,12 +14,10 @@ class Human1 {
 }
 
 const human1 = new Human1('Name1', 'LastName1');
+console.log(human1.getName()); // >> Name1 LastName1
 
-console.log(human1.getName());
 
-
-// наследование классов
-
+// - наследование классов
 class Calc {
   sum(a, b) {
     return a + b;
@@ -43,12 +41,6 @@ class SqrCalc extends Calc {
   sum(a, b) {
     const result = super.sum(a, b); // чтобы обратиться к методу родительского класса нужно исп слово super
     
-    //return result * result;
-    
-    // для es2017
-    
-    // ** — оператор возведения в степень
-    
     return result ** 2;
   }
   
@@ -65,16 +57,14 @@ class SqrCalc extends Calc {
   }
 }
 
-const calc = new Calc();
-
-console.log(calc.sum(10, 2));
+const calc1 = new Calc();
+console.log(calc1.sum(10, 2)); // >> 12
 
 const sqrCalc = new SqrCalc();
+console.log(sqrCalc.sum(10, 2)); // >> 144
 
-console.log(sqrCalc.sum(10, 2));
 
 // чтобы переопределить конструктор у родителя, нужно вызвать super(); из constructor() {};
-
 class someClass extends otherClass {
   constructor() {
     super();
