@@ -17,7 +17,7 @@ const human1 = new Human1('Name1', 'LastName1');
 console.log(human1.getName()); // >> Name1 LastName1
 
 
-// - наследование классов
+// - extends наследование классов
 class Calc {
   sum(a, b) {
     return a + b;
@@ -91,3 +91,16 @@ a.arrowFun(); // экземпляр класса А
 
 a.fun().call(null); // null
 a.arrowFun().call(null); // экземпляр класса А
+
+
+// - static статические методы/св-ва
+// св-ва непосредственно конструктора, доступные через точку
+// не могут быть вызваны у экземпляров (instance) класса
+// для объявл исп слово static
+class User {
+  static someStaticMethod() {
+    return 'someStaticMethod';
+  }
+}
+
+console.log(User.someStaticMethod());
