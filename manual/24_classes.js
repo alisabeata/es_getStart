@@ -104,3 +104,12 @@ class User {
 }
 
 console.log(User.someStaticMethod());
+
+// пример из старого синтаксиса
+function C() {}
+C.staticMethod = function () {}; // === static staticMethod() {}
+C.prototype.instanceMethod = function () {};
+
+const c = new C();
+C.staticMethod(); // недоступен для экземпляра
+C.instanceMethod(); // доступен для инстанс === публичному методу
