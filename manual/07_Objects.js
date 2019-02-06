@@ -58,6 +58,13 @@ Object.defineProperty(obj2, 'prop', {
   set(){console.log('setting')}
 });
 
+// - добавляение св-ва из переменной
+const a = 'somename';
+const obj = {
+  [a]: 1
+};
+console.log(obj); // >> {somename: 1}
+
 
 
 // - this
