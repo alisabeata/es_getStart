@@ -59,6 +59,7 @@ Object.defineProperty(obj2, 'prop', {
 });
 
 // - добавляение св-ва из переменной
+// в [] может исп выражение (не только переменная)
 const a = 'somename';
 const obj = {
   [a]: 1
