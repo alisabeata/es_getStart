@@ -1,123 +1,166 @@
-// DOM - Document Object Model
+// DOM
+// Document Object Model
 
-// getElementById
-let container1 = document.getElementById('container');
 
-console.log(container1);
 
+// - размеры элементов
+window.innerWidth                     // вся ширина окна
+document.documentElement.clientWidth  // ширина минус прокрутка
+
+offsetParent              // родитель по дереву рендеринга
+offsetLeft/offsetTop      // позиция левого верхнего угла блока отн offsetParent
+offsetWidth/offsetHeight  // ширина/высота с пэддингами (рамками)
+clientLeft/clientTop      // отступ области содержимого от левого-верхнего угла элемента
+clientWidth/clientHeight  // ширина/высота с пэддингами без скролла
+scrollWidth/scrollHeight  // ширина/высота с пэддингами, включая прокручиваемую область, не включает полосы прокрутки
+scrollLeft/scrollTop      // ширина/высота прокрученной части документа от верхнего левого угла
+
+// (!) все свойства, доступны только для чтения, кроме scrollLeft/scrollTop
+
+
+// - прокрутка
+// Большинство браузеров корректно обработает запрос к scrollLeft/Top
+documentElement.scrollLeft
+documentElement.scrollTop
+// но в Safari/Chrome/Opera есть ошибки, из-за которых следует использовать document.body
+document.body.scrollLeft
+document.body.scrollTop
+
+// можно также исп
+window.pageYOffset
+window.pageXOffset
+
+// изменение положения прокрутки
+scrollBy(x,y)            // прокручивает страницу относительно текущих координат
+scrollTo(pageX,pageY)    // прокручивает страницу к указанным координатам относительно документа
+elem.scrollIntoView(top) // вызывается на элементе и прокручивает страницу так, чтобы элемент оказался вверху, если параметр top равен true, и внизу, если top равен false
+
+// - координаты
+clientX, clientY       // начало координат относительно окна
+pageX, pageY           // начало координат относительно документа
+
+
+// получение координат
+function getCoords(elem) {
+  const block = elem.getBoundingClientRect();
+ 
+  return {
+    top: block.top + window.pageYOffset,
+    left: block.left + window.pageXOffset
+  };
+}
+
+
+
+
+// - навигация
+
+// - getElementById
+const container1 = document.getElementById('container');
+// условие на наличие элемента
 if (container1) {  // if (container != null)
   console.log('элемент container есть на странице');
 }
 
-// getElementsByClassName
-let elements = document.getElementsByClassName('c1');
-
-console.log(elements);
-
+// - getElementsByClassName
+const elements = document.getElementsByClassName('c1');
+// условие на наличие элемента
 if (elements.length > 0) {
   console.log('элементы elements есть на странице');
 }
 
-
-// querySelectorAll если не нужно динамическое обновление коллекций, тк у getElement.. она присутсвует
-
-
-// querySelector, querySelectorAll
-let contain = document.querySelector('#container');
-let elems = [].slice.call(document.querySelectorAll('.c1'));
-
-console.log(contain);
-console.log(elems);
+// (!) querySelectorAll если не нужно динамическое обновление коллекций, тк у getElement она присутсвует
 
 
+// - querySelector
+// - querySelectorAll
+const contain = document.querySelector('#container');
+const elems = [].slice.call(document.querySelectorAll('.c1'));
 
+// - childNodes
+const container = document.querySelector('#container');
+const containerInnerChilds = container.childNodes;
 
-// childNodes
-let container = document.querySelector('#container');
-
-let containerInnerChilds = container.childNodes;
-
-console.log(containerInnerChilds);
-
-
-// nodeType
+// - nodeType
 for (let i = 0; i < containerInnerChilds.length; i++) {
-  console.log(containerInnerChilds[i].nodeType);
-  
   if (containerInnerChilds[i].nodeType == 1) {
-    console.log('das ist element');
+    console.log('это элемент');
   }
   
   if (containerInnerChilds[i].nodeType == 3) {
-    console.log('das ist text');
+    console.log('это текст');
   }
 }
 
-// children возвращает только элементы
-let containerInnerElems = container.children;
+// - children 
+// возвращает только элементы
+const containerInnerElems = container.children;
 
-console.log(containerInnerElems);
+// - firstChild
+container.firstChild         // #text
+container.firstElementChild  // <div class="c1"></div>
 
+// - lastChild
+container.lastChild          // #text
+container.lastElementChild   // <div class="c2"></div>
 
-// first childs
-console.log(container.firstChild); // #text
-console.log(container.firstElementChild); // <div class="c1"></div>
+// - siblings
+const elemC1Middle = document.querySelectorAll('.c1')[1];
 
-// last
-console.log(container.lastChild); // #text
-console.log(container.lastElementChild); // <div class="c2"></div>
+elemC1Middle.previousSibling         // #text
+elemC1Middle.previousElementSibling  // <div class="c1"></div>
+elemC1Middle.nextSibling             // #text
+elemC1Middle.nextElementSibling      // <div class="c2"></div>
 
-// siblings
-let elemC1Middle = document.querySelectorAll('.c1')[1];
-
-console.log(elemC1Middle.previousSibling); // #text
-console.log(elemC1Middle.previousElementSibling); // <div class="c1"></div>
-
-console.log(elemC1Middle.nextSibling); // #text
-console.log(elemC1Middle.nextElementSibling); // <div class="c2"></div>
-
-// parent
-console.log(elemC1Middle.parentElement);  // <div id="container"></div>
+// - parent
+elemC1Middle.parentElement   // <div id="container"></div>
 
 
-// body
+// - body
 const body = document.body;
 
 
-// createElement, appendChild
+
+// - создание / удаление
+
+// - createElement
+// - appendChild
 const newDiv = document.createElement('div');
-
 document.body.appendChild(newDiv);
-
 newDiv.textContent = 'hello!';
 
-
-// removeChild
+// - removeChild
 document.body.removeChild(newDiv);
 
 
-// insertBefore
-
+// - insertBefore
 // относительно чего (container), что (newDiv), перед чем (elemC1Middle)
 document.querySelector('#container').insertBefore(newDiv, elemC1Middle);
 
 
-// inner, outer, tagName
+// - innerHTML
+// - outerHTML
+// - tagName
 console.log(container.innerHTML);
 console.log(container.outerHTML);
 console.log(container.tagName); // "DIV"
 
-// attrs
+// - setAttribute
 container.setAttribute('attr1', 'value1');
 container.setAttribute('attr2', 'value2');
 
-console.log(container.getAttribute('attr1'));
-
+// - removeAttribute
 container.removeAttribute('attr2');
 
 
-// remove element
+// - removeChild
+// - remove
 // относительно родителя
-// container.removeChild(elemC1Middle);
+container.removeChild(elemC1Middle);
 
-// в более новых браузерах работает elemC1Middle.remove();
+// (!) в более новых браузерах работает elemC1Middle.remove()
+elemC1Middle.remove();
+
+
+
+
