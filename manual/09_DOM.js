@@ -2,6 +2,46 @@
 // Document Object Model
 
 
+// - навигация
+// обращение к body
+const body = document.body;
+ 
+// обращение к html
+const html = document.documentElement;
+ 
+// childNodes хранит все дочернии элементы, включая текст
+const childrens = document.body.childNodes; 
+const firstChildOfChildrens = childrens[0];
+ 
+// обращение к первому элементу
+const firstChild = document.body.firstChild; 
+ 
+// обращение к последнему элементу
+const lastChild = document.body.lastChild; 
+ 
+ 
+// обращение к элементу с id="title"
+const title = document.getElementById('title'); 
+ 
+// ищет выше по ирархии указанный элемент
+const closestElem = title.closest('body'); 
+ 
+// ищет элементы с тегом <h1>
+const tagH1 = document.getElementsByTagName('h1');
+ 
+// ищет элементы с классами "main-title"
+const mainTitles = document.getElementsByClassName('main-title');
+ 
+// ищет элементы с атрибутом name="title"
+const elemWithAttrTitle = document.getElementsByName('title');
+ 
+ 
+// ищет элемент соответствующий данному селектор и возвращает первый попавшийся
+const title = document.querySelector('#title + .main-title');
+ 
+// ищет все элементы соответствующие данному селектору
+const titles = document.querySelectorAll('#title + .main-title');
+
 
 // - размеры элементов
 window.innerWidth                     // вся ширина окна
@@ -163,4 +203,39 @@ elemC1Middle.remove();
 
 
 
+// (!) атрибуты — это то, что написано в HTML, свойства — это то, что находится в свойстве DOM-объекта
 
+// - свойства
+// получение значения свойства
+elem.className;
+a.href;
+
+// - атрибуты
+// Проверяет наличие атрибута
+elem.hasAttribute('name');
+ 
+// Получает значение атрибута
+elem.getAttribute('name');
+ 
+// Устанавливает атрибут
+elem.setAttribute('name', 'value');
+ 
+// Удаляет атрибут
+elem.removeAttribute('name');
+ 
+// Получает все атирибуты элемента в виде псевдомассива
+elem.attributes;
+
+
+// различие getAttribute и обращения к свойству, на примере href (чаще всего совпадают)
+a.getAttribute('href'); // '/' 
+a.href; // Полный URL
+ 
+ 
+// работа с checked через атрибут
+alert( input.getAttribute('checked') ); // пустая строка
+input.removeAttribute('checked'); // снять галочку
+ 
+// работа с checked через свойство
+alert( input.checked ); // false <-- может быть только true/false
+input.checked = true; // поставить галочку
