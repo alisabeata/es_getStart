@@ -9,6 +9,7 @@ link.addEventListener('click', clickHendler);
 link.removeEventListener('click', clickHendler);
 
 
+// схема обработки событий
 button = {
   events: {
     click: [
@@ -19,9 +20,9 @@ button = {
     ]
   }
 }
-                   
-                   
-// ссылка на объект при клике
+
+                  
+// (!) ссылка на объект при клике
 link.addEventListener('click', console.log(event.target));
 
 
@@ -35,7 +36,6 @@ btn.addEventListener('click', () => {
 elem.addEventListener('myEvent', () => {
   console.log('на диве произошло событие myEvent');
 });
-
 
 
 // - делегирование событий
@@ -55,19 +55,40 @@ list.addEventListener('click', () => {
 
 
 
-
 // - keyboard events
+keydown    // при нажати клавиши
+keyup      // когда клавиша отпущена
+keypress   // когда нажата и отпущена
+
 const eventTypeHandler = event => console.log(event.type);
 
-inp.addEventListener('keydown', eventTypeHandler);
-inp.addEventListener('keyup', eventTypeHandler);
-inp.addEventListener('keypress', eventTypeHandler);
+inp.addEventListener('keydown', () => {});
+inp.addEventListener('keyup', () => {});
+inp.addEventListener('keypress', () => {});
+                 
+                   
+// - mouse events
+click         // при клике на элемент левой кнопкой мыши
+contextmenu   // при клике правой кнопкой мыши
+mouseover     // при наведении курсора
+mousedown     // нажатие
+mouseup       // кнопка отпущена
+mousemove     // движение курсора
+mouseout      // курсор выведен за пределы элемента
 
-inp.addEventListener('input', eventTypeHandler);
 
+// - события форм
+submit        // при отправке формы
+focus         // при фокусе на элементе
+change        // при изменении в элементе формы
+input         // при наборе текста
 
+inp.addEventListener('input', () => {});
+                   
 
 // - document loading
+DOMContentLoaded  // DOM дерево готово к работе
+load              // страница загружена полностью
 
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -85,6 +106,11 @@ window.onload = () => console.log('load');
                    
 // - состояние подключения
 // когда появл инет
-window.addEventListener('online', () => {...});
+window.addEventListener('online', () => {});
 // когда отвалился инет
-window.addEventListener('offline', () => {...});
+window.addEventListener('offline', () => {});
+
+                                          
+// - События CSS
+transitionend     // когда CSS-анимация завершена
+element.addEventListener('transitionend', () => {});
