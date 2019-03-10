@@ -1,5 +1,6 @@
 // Console
 
+// https://developer.mozilla.org/ru/docs/Web/API/Console
 
 // - debugger (точки останова)
 // отладка в дев тулз
@@ -8,6 +9,13 @@ debugger;
 
 // - console
 console.log('text');
+
+// подстановка значений
+// %s         выводит строку
+// %d или %i  выведет число
+// %o или %O  выводит ссылку на объект, нажатие на ссылку откроет инспектор кода
+// %f         выведет число с плавающей точкой
+// %c         стилезует вывод в консоль
 console.log('text %s and %s', 'sometext', 'texxxt');
 
 
