@@ -18,6 +18,10 @@ for (let val of arr) {
   console.log(val)
 }
 
+for (let p = fn.next(); !p.done; p = fn.next()) {
+  console.log(p.value);
+}
+
 
 // опереатор разворота ... так же исп итератор
 

@@ -117,7 +117,7 @@ element.addEventListener('transitionend', () => {});
                    
                    
 // - события ошибок
-// обработка ошибкт в синхронном коде
+// обработка ошибки в синхронном коде
 window.onerror = function () {};
 // обработка ошибки в промисе
 window.addEventListener('unhandledrejection', () => {});
