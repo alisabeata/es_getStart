@@ -128,3 +128,15 @@ a.call(null); // >> window (null не меняет контекст)
 function ffn(x) { return x * 2 }
 var ffn
 console.log(ffn) // >> function ffn(x) { return x * 2 }
+
+
+// изменение св-в объектов при присвоении
+var b = {};
+var c;
+
+b.b = 1;
+c = b;  // b и c указывает на одну ячейка памяти
+c.b = 2;
+
+console.log(b.b) // >> 2
+console.log(c.b) // >> 2
