@@ -1,4 +1,4 @@
-// examples
+// examples and questions
 
 // — числа под главной диагональю матрицы
 const arr = [
@@ -119,7 +119,7 @@ function foo() {
 foo() // >>> 7
 
 
-// что выведет лог
+// что выведет консоль
 function fn() {
   console.log(this);
 }
@@ -140,3 +140,53 @@ c.b = 2;
 
 console.log(b.b) // >> 2
 console.log(c.b) // >> 2
+
+
+// вывести значение объекта (все способы)
+function ff() { console.log(this.x) }
+var obj = {x: 'val'};
+
+ff.call(obj)
+ff.apply(obj)
+ff.bind(obj)()
+
+
+// получить объект {width: 10, height: 20}
+var arr = [
+  {name: 'width', value: 10},
+  {name: 'height', value: 20},
+];
+
+function toObject(arr) {
+  var obj = {};
+  
+  for (var i = 0; i < arr.length; i++) {
+    obj[arr[i].name] = arr[i].value;
+  }
+  
+  return obj;
+}
+
+
+// что выведет консоль
+let s = 'foo';
+const F = a => { // у функц своя область видимости, параметр просто копируется
+  a = 'buzz';
+}
+F(s);
+console.log(s); // >> foo
+
+
+//
+const o = { s: 'foo' };
+const G = obj => {
+  obj.s = 'buzz';
+};
+G(o);
+console.log(o.s); // >> buzz
+
+
+// максимальное число в массиве
+const nums = [3, 7, -10, 0, 9, 11];
+
+console.log(Math.max(...nums));
